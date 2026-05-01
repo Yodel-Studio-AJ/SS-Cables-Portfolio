@@ -1,8 +1,11 @@
 import React from 'react'
+import Navbar from './navbar'
 
 const page = () => {
   return (
-    <div>page</div>
+    <main className="min-h-screen bg-zinc-900 relative">
+      <Navbar />
+    </main>
   )
 }
 
