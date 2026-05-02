@@ -12,7 +12,7 @@ const NAV_LINKS = [
 ];
 
 const SuffonIcon = ({ className }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 42 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg className={className} viewBox="0 0 42 28" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
     <path d="M13.5557 26.4942C20.7014 26.4942 26.4942 20.7014 26.4942 13.5557C26.4942 6.40996 20.7014 0.617188 13.5557 0.617188C6.40996 0.617188 0.617188 6.40996 0.617188 13.5557C0.617188 20.7014 6.40996 26.4942 13.5557 26.4942Z" fill="#14B927" stroke="#F0F0F5" strokeWidth="1.23412" strokeMiterlimit="10"/>
     <path d="M38.8789 13.4453L39.1344 13.3774L39.9576 12.8838L40.0329 12.9875L40.0724 13.1318L40.0933 13.1985L40.1154 13.3577L38.9012 13.5477L38.8789 13.4453Z" fill="#3B3B3B"/>
     <path d="M39.4554 13.2414C39.4694 13.2622 39.4786 13.2858 39.4825 13.3105C39.4758 13.2867 39.4667 13.2635 39.4554 13.2414ZM39.4825 13.3105C39.4911 13.3395 39.497 13.3693 39.4998 13.3994C39.4924 13.3698 39.4887 13.3389 39.4825 13.3105ZM40.4599 12.5244L39.0604 13.3661L38.6791 13.4636L38.2705 13.5413L38.2792 13.5919L38.3052 13.7067H38.3137L38.3014 13.6672L38.7544 13.5512L38.5643 13.6647L40.7302 13.3031C40.7215 13.2015 40.7042 13.1007 40.6783 13.002C40.6359 12.831 40.5619 12.6682 40.4599 12.5244Z" fill="#F0F0F5"/>
@@ -24,7 +24,7 @@ const SuffonIcon = ({ className }: { className?: string }) => (
 );
 
 const SamarIcon = ({ className }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 31 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg className={className} viewBox="0 0 31 15" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
     <path d="M28.3447 7.08301L28.6002 7.01513L29.4234 6.52148L29.4987 6.62515L29.5382 6.76954L29.5591 6.83618L29.5813 6.99538L28.367 7.18543L28.3447 7.08301Z" fill="#3B3B3B"/>
     <path d="M28.9212 6.87913C28.9352 6.89989 28.9444 6.92349 28.9483 6.94824C28.9416 6.92436 28.9325 6.9012 28.9212 6.87913ZM28.9483 6.94824C28.957 6.97723 28.9628 7.00699 28.9656 7.0371C28.9582 7.00748 28.9545 6.97663 28.9483 6.94824ZM29.9257 6.16211L28.5262 7.00378L28.1449 7.10128L27.7363 7.17902L27.7451 7.22962L27.771 7.3444H27.7796L27.7672 7.3049L28.2202 7.1889L28.0301 7.30243L30.196 6.94083C30.1874 6.83916 30.17 6.73842 30.1442 6.63972C30.1018 6.46866 30.0277 6.30585 29.9257 6.16211Z" fill="#F0F0F5"/>
     <path d="M28.7199 7.39626L28.4384 7.53571L28.2559 7.27037L28.3694 6.96802C28.3538 7.00717 28.3475 7.04941 28.3509 7.09143L29.5641 6.87793C29.6043 6.97499 29.6252 7.07893 29.6257 7.18398C29.6301 7.42114 29.5602 7.65374 29.4258 7.84918L28.7199 7.39626Z" fill="#3B3B3B"/>
@@ -57,27 +57,18 @@ export default function Navbar() {
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
+            aria-hidden="true"
           >
             {isOpen ? (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             ) : (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             )}
           </svg>
         </button>
 
         {/* Navigation Links - Desktop */}
-        <ul className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-8 text-[14px] leading-normal font-bold text-white/90 font-[family-name:var(--font-ibm-plex-sans)]">
+        <ul className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-8 text-[14px] leading-normal font-bold text-white/90">
           {NAV_LINKS.map((link) => (
             <li key={link.label}>
               <Link href={link.href} className="hover:text-white transition-colors">
@@ -92,6 +83,7 @@ export default function Navbar() {
           <Link
             href="#"
             className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-full text-[11px] font-bold hover:bg-black/80 transition-colors"
+            aria-label="SUFFON action"
           >
             SUFFON
             <SuffonIcon className="h-[18px] w-auto" />
@@ -99,6 +91,7 @@ export default function Navbar() {
           <Link
             href="#"
             className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-full text-[11px] font-bold hover:bg-black/80 transition-colors"
+            aria-label="SAMAR action"
           >
             SAMAR
             <SamarIcon className="h-[10px] w-auto" />
@@ -106,42 +99,46 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Menu Overlay */}
-        {isOpen && (
-          <div 
-            id="mobile-menu"
-            className="absolute top-0 left-0 right-0 bg-black/95 h-screen flex flex-col items-center justify-center gap-8 lg:hidden"
-          >
-            <ul className="flex flex-col items-center gap-6 text-[16px] leading-normal font-bold text-white font-[family-name:var(--font-ibm-plex-sans)]">
-              {NAV_LINKS.map((link) => (
-                <li key={link.label}>
-                  <Link href={link.href} onClick={() => setIsOpen(false)}>
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <div className="flex flex-col gap-4 mt-6 w-full max-w-xs px-4">
-              <Link
-                href="#"
-                className="flex items-center justify-center gap-3 bg-white text-black px-6 py-3 rounded-full text-sm font-bold"
-              >
-                SUFFON
-                <SuffonIcon className="h-[20px] w-auto" />
-              </Link>
-              <Link
-                href="#"
-                className="flex items-center justify-center gap-3 bg-white text-black px-6 py-3 rounded-full text-sm font-bold"
-              >
-                SAMAR
-                <SamarIcon className="h-[12px] w-auto" />
-              </Link>
-            </div>
+        <div 
+          id="mobile-menu"
+          className={`fixed inset-0 bg-black/85 backdrop-blur-sm -z-10 flex flex-col items-center justify-center gap-8 lg:hidden transition-all duration-300 ease-in-out ${
+            isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+          }`}
+          aria-hidden={!isOpen}
+        >
+          <ul className="flex flex-col items-center gap-6 text-[16px] leading-normal font-bold text-white">
+            {NAV_LINKS.map((link) => (
+              <li key={link.label}>
+                <Link href={link.href} onClick={() => setIsOpen(false)}>
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <div className="flex flex-col gap-4 mt-6 w-full max-w-xs px-4">
+            <Link
+              href="#"
+              className="flex items-center justify-center gap-3 bg-white text-black px-6 py-3 rounded-full text-sm font-bold"
+              aria-label="SUFFON action"
+            >
+              SUFFON
+              <SuffonIcon className="h-[20px] w-auto" />
+            </Link>
+            <Link
+              href="#"
+              className="flex items-center justify-center gap-3 bg-white text-black px-6 py-3 rounded-full text-sm font-bold"
+              aria-label="SAMAR action"
+            >
+              SAMAR
+              <SamarIcon className="h-[12px] w-auto" />
+            </Link>
           </div>
-        )}
+        </div>
+
       </nav>
 
       {/* Decorative Line Under Nav */}
-      <div className="hidden lg:block max-w-full mx-auto px-8 mt-6">
+      <div className="hidden lg:block max-w-full mx-auto px-8 mt-6" aria-hidden="true">
         <div className="w-full h-px bg-white/20"></div>
       </div>
     </header>

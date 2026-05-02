@@ -1,14 +1,15 @@
-import React from 'react'
-import Navbar from './Components/navbar'
-import Hero from './Components/hero'
+import Navbar from './Components/navbar';
+import Hero from './Components/hero';
+import TrustedSection from './Components/TrustedSection';
+import HouseWiringSection from './Components/HouseWiringSection';
 
-const page = () => {
+export default function Page() {
   return (
-    <main className="min-h-screen bg-zinc-900 relative">
+    <main className="min-h-screen bg-white relative">
       <Navbar />
       <Hero />
+      <TrustedSection />
+      <HouseWiringSection />
     </main>
-  )
+  );
 }
-
-export default page
