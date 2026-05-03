@@ -1,9 +1,7 @@
-import React from 'react'
+import { getHeroSections } from '../sanity/lib/api/landingPage/heroSection'
 
-const page = () => {
-  return (
-    <div>page</div>
-  )
+export default async function Page() {
+  await getHeroSections()
+
+  return <div>page</div>
 }
-
-export default page
