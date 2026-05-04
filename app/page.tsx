@@ -42,8 +42,43 @@ export default function Page() {
           },
         ]}
       />
-      <TrustedSection />
-      <HouseWiringSection />
+      <TrustedSection
+        title="Tested. Deployed. Trusted."
+        description={`SS Cable combines advanced engineering with proven field performance,\ndelivering measurable results for utilities modernizing their transmission infrastructure.`}
+        logos={[
+          {
+            url: 'https://res.cloudinary.com/dmnew7sbj/image/upload/v1777723738/south-bihar-power-distribution-co-ltd-aurangabad-bihar-electricity-suppliers-hj3ncnnaoa-250_1_tuivwz.png',
+            alt: 'South Bihar Power Distribution Co Ltd',
+            size: 'lg',
+          },
+          {
+            url: 'https://res.cloudinary.com/dmnew7sbj/image/upload/v1777723742/unnamed_1_iqurcx.png',
+            alt: 'Bihar Electricity Board',
+            size: 'lg',
+          },
+          {
+            url: 'https://res.cloudinary.com/dmnew7sbj/image/upload/v1777723746/1a0cec36ab54ad063a8a10f022348793_1_a2rlcf.png',
+            alt: 'NEEPCO',
+            size: 'sm',
+          },
+          {
+            url: 'https://res.cloudinary.com/dmnew7sbj/image/upload/v1777723750/apepdcl-mandapeta-east-godavari-wddeeplvmc_1_hrjonz.png',
+            alt: 'APEPDCL',
+            size: 'sm',
+          },
+          {
+            url: 'https://res.cloudinary.com/dmnew7sbj/image/upload/v1777723756/Indian_Railways.svg_2_mnyb6q.png',
+            alt: 'Indian Railways',
+            size: 'sm',
+          },
+        ]}
+      />
+      <HouseWiringSection
+        titlePart1="House Wiring"
+        titlePart2="Cables"
+        description={`Discover our premium range of House Wiring Cables designed for safe, efficient, and long-lasting electrical installations in homes and residential buildings. Made with high-quality PVC insulation, these wires offer excellent conductivity, fire resistance, and durability for all your domestic electrical needs.`}
+        backgroundImageUrl="https://res.cloudinary.com/dmnew7sbj/image/upload/v1777726238/A_person_in_a_light_suit_speaks_on_stage_with_a_vivid_celestial-themed_background._wznnlj.png"
+      />
       <IndustrialWiringSection
         title="Industrial Wiring Cables."
         ctaTopText="Take a Look"
