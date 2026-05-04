@@ -9,7 +9,39 @@ export default function Page() {
   return (
     <main className="min-h-screen bg-white relative">
       <Navbar />
-      <Hero />
+      <Hero
+        slides={[
+          {
+            id: 0,
+            image: 'https://res.cloudinary.com/dmnew7sbj/image/upload/v1777671641/q042V-1_1.jpg_1_bjadc6.jpg',
+            heading: 'styled',
+          },
+          {
+            id: 1,
+            image: 'https://res.cloudinary.com/dmnew7sbj/image/upload/v1777747506/Gemini_Generated_Image_a4hx2ma4hx2ma4hx_ewyqti.png',
+            bgZoom: true,
+            heading: 'generic',
+            line1: 'Powering Connections.',
+            line2: 'Delivering Trust',
+          },
+          {
+            id: 2,
+            image: 'https://res.cloudinary.com/dmnew7sbj/image/upload/v1777747658/Gemini_Generated_Image_rukbp2rukbp2rukb_v71gil.png',
+            bgZoom: true,
+            heading: 'generic',
+            line1: 'Advanced Wiring',
+            line2: 'for Modern Needs.',
+          },
+          {
+            id: 3,
+            image: 'https://res.cloudinary.com/dmnew7sbj/image/upload/v1777747702/Gemini_Generated_Image_62mn6162mn6162mn_sl54ux.png',
+            bgZoom: true,
+            heading: 'generic',
+            line1: 'Safe Connections',
+            line2: 'for Every Home.',
+          },
+        ]}
+      />
       <TrustedSection />
       <HouseWiringSection />
       <IndustrialWiringSection
