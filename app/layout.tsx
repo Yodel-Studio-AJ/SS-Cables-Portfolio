@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 const ibmPlexSans = IBM_Plex_Sans({
-  weight: ['400'],
+  weight: ['100', '200', '300', '400', '500', '600', '700'],
   variable: "--font-ibm-plex-sans",
   subsets: ["latin"],
 });
