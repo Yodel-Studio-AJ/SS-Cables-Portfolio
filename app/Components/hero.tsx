@@ -157,14 +157,14 @@ export default function Hero({ slides, interval = DEFAULT_INTERVAL }: HeroProps)
       aria-labelledby="hero-heading"
       className="w-full bg-white min-h-screen flex flex-col pt-3 pb-4 md:pt-4 md:pb-4 lg:pt-6 lg:pb-4"
     >
-      <div className="max-w-7xl mx-auto px-4 w-full flex-1 flex flex-col">
+      <div className="w-full px-4 md:px-6 lg:px-5 flex-1 flex flex-col">
         <div className="relative w-full flex-1 flex items-end pb-12 sm:pb-16 md:pb-24 rounded-[1.5rem] md:rounded-[2rem] overflow-hidden shadow-lg">
 
           {/* Background image with crossfade */}
           <AnimatePresence mode="sync">
             <motion.div
               key={slide.id}
-              variants={imageVariants}
+              variants={imageVariants}  
               initial="enter"
               animate="center"
               exit="exit"

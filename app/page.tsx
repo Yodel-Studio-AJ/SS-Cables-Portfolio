@@ -90,8 +90,10 @@ export default function Page() {
         ]}
       />
       <NextGenSection
-        titlePrimary="Next generation"
-        titleSecondary="advanced conductor"
+        titlePrimary="Explore"
+        titleSecondary="Our Product Brochure"
+        description="Get a detailed overview of our industrial wire range, including specifications, applications, and technical insights to help you choose the right solution for your needs."
+        dropdownItems={["HOUSE WIRE", "ITEM2", "ITEM3", "ITEM4"]}
         buttonText="Download"
         imageUrls={[
           "https://res.cloudinary.com/dmnew7sbj/image/upload/v1777889382/Rectangle_62_c2agb6.png",

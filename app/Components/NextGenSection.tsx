@@ -8,9 +8,11 @@ import Link from 'next/link';
 export interface NextGenSectionProps {
   titlePrimary: string;
   titleSecondary: string;
+  description: string;
   buttonText: string;
   buttonLink?: string;
   imageUrls: string[];
+  dropdownItems: string[];
 }
 
 const SuffonIcon = () => (
@@ -61,9 +63,11 @@ const textVariants: Variants = {
 export default function NextGenSection({
   titlePrimary,
   titleSecondary,
+  description,
   buttonText,
   buttonLink = "#",
   imageUrls,
+  dropdownItems,
 }: NextGenSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.35 });
@@ -72,6 +76,8 @@ export default function NextGenSection({
   const titleId = "next-gen-title";
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(dropdownItems?.[0] || "");
 
   useEffect(() => {
     if (!imageUrls || imageUrls.length <= 1) return;
@@ -92,7 +98,7 @@ export default function NextGenSection({
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
         variants={sectionVariants}
-        className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12"
+        className="w-full px-4 md:px-6 lg:px-6 "
       >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           
@@ -129,15 +135,62 @@ export default function NextGenSection({
           >
             <h2
               id={titleId}
-              className="text-[22px] sm:text-[26px] md:text-[30px] lg:text-[28px] xl:text-[34px] leading-[1.2] tracking-tight mb-8"
+              className="text-[22px] sm:text-[26px] md:text-[30px] lg:text-[28px] xl:text-[34px] leading-[1.2] tracking-tight mb-4"
             >
               <span className="italic text-gray-800 font-medium mr-2">
                 {titlePrimary}
               </span>
-              <span className="text-gray-500 font-[100]">
+              <span className="italic text-gray-500 font-[100]">
                 {titleSecondary}
               </span>
             </h2>
+
+            <p className="mb-8 text-base md:text-lg text-gray-500 font-[400] font-ibm-plex-sans leading-relaxed max-w-[500px]">
+              {description}
+            </p>
+
+            {/* Dropdown Menu */}
+            <div className="relative w-full max-w-[200px] mb-10 z-30">
+              <button
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className="w-full flex items-center justify-between px-6 py-3 border border-gray-300 rounded-xl bg-white text-gray-700 font-medium hover:border-gray-400 transition-all uppercase tracking-wider"
+              >
+                <span className="font-ibm-plex-sans">{selectedItem}</span>
+                <svg
+                  className={`w-5 h-5 transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+
+              <AnimatePresence>
+                {isDropdownOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-xl overflow-hidden z-40"
+                  >
+                    {dropdownItems.map((item, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => {
+                          setSelectedItem(item);
+                          setIsDropdownOpen(false);
+                        }}
+                        className="w-full text-left px-6 py-3 hover:bg-gray-50 text-gray-700 font-ibm-plex-sans transition-colors border-b last:border-0 border-gray-100 uppercase text-sm tracking-wide"
+                      >
+                        {item}
+                      </button>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
 
             <motion.div whileHover={{ scale: 1.05 }} className="inline-block">
               <Link

@@ -57,7 +57,7 @@ const CtaLink = ({
   <motion.div variants={variants} className={className}>
     <Link
       href={href}
-      className="inline-flex items-center gap-3 border border-gray-400 rounded-full px-6 py-2.5 text-sm font-bold text-[#3B3B3B] hover:bg-gray-50 transition-colors group"
+      className="inline-flex items-center gap-3 bg-[#3B3B3B] hover:bg-[#2A2A2A] rounded-full px-6 py-2.5 text-sm font-bold text-white transition-colors group"
     >
       <span>{text}</span>
       <SuffonIcon />
@@ -100,7 +100,7 @@ export default function IndustrialWiringSection({
       <motion.div
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
-        className="max-w-7xl mx-auto px-4"
+        className="w-full px-4 md:px-6 lg:px-6"
       >
         {/* Top Right */}
         <CtaLink
@@ -118,11 +118,14 @@ export default function IndustrialWiringSection({
           >
             <h2
               id={titleId}
-              className="text-[40px] sm:text-[48px] md:text-[56px] lg:text-[64px] font-[100] leading-[1.1] text-gray-500 tracking-[-0.03em] max-w-[400px]"
+              className="text-[40px] sm:text-[48px] md:text-[56px] lg:text-[64px] font-[300] font-ibm-plex-sans leading-[1.1] text-gray-700 tracking-[-0.03em] max-w-[400px]"
             >
               {displayText}
               {hasDot && <span className="text-[#14B927] font-bold">.</span>}
             </h2>
+            <p className="mt-6 text-base md:text-lg text-gray-500 font-[400] font-ibm-plex-sans leading-relaxed max-w-[500px]">
+              Power your operations with our industrial-grade wires built to handle tough environments and continuous loads. Designed for factories, machinery, and large-scale electrical systems, these wires combine high conductivity with strong insulation to withstand heat, moisture, and mechanical stress. Whether it’s for control panels, heavy equipment, or power distribution, they deliver dependable performance, safety, and long-term reliability where it matters most.
+            </p>
             <div className="w-full max-w-[200px] h-px bg-black/10 mt-8" />
           </motion.div>
 

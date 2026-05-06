@@ -54,7 +54,7 @@ export default function HouseWiringSection({
       aria-label={`${titlePart1} ${titlePart2}`}
       className="w-full bg-white pb-16 md:pb-24"
     >
-      <div className="max-w-7xl mx-auto px-4 w-full">
+      <div className="w-full px-4 md:px-6 lg:px-6">
         <motion.div
           variants={cardVariants}
           initial="hidden"
