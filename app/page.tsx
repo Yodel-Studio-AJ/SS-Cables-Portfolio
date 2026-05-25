@@ -4,8 +4,38 @@ import TrustedSection from './Components/TrustedSection';
 import HouseWiringSection from './Components/HouseWiringSection';
 import IndustrialWiringSection from './Components/IndustrialWiringSection';
 import NextGenSection from './Components/NextGenSection';
+import IndustriesWeCater from './Components/industrieswecater';
+import { getActiveIndustriesSection } from '@/sanity/lib/api/landingPage/industries';
 
-export default function Page() {
+export default async function Page() {
+  const industriesSanityData = await getActiveIndustriesSection();
+
+  // --- Industries We Cater Data ---
+  const industriesDefaultData = {
+    eyebrow: '• SECTORS WE POWER',
+    heading: 'INDUSTRIES WE CATER',
+    highlightedWord: 'CATER',
+    description: 'From residential wiring to heavy industrial infrastructure — SS Cable delivers cables engineered for every demand, environment, and voltage level.',
+    industries: [
+      { cardNumber: '01', title: 'MANUFACTURING', description: 'Heavy-duty wiring solutions for plant floors and industrial machinery.' },
+      { cardNumber: '02', title: 'POWER & UTILITIES', description: 'HT/LT cables for generation, transmission & distribution networks.' },
+      { cardNumber: '03', title: 'REAL ESTATE', description: 'House wiring cables for residential and commercial buildings.' },
+      { cardNumber: '04', title: 'INFRASTRUCTURE', description: 'Highways, bridges, tunnels and large civic infrastructure projects.' },
+      { cardNumber: '05', title: 'OIL & CHEMICAL', description: 'Armoured & flame-retardant cables for hazardous environments.' },
+      { cardNumber: '06', title: 'TELECOM', description: 'Control & signal cables for telecom and network infrastructure.' },
+      { cardNumber: '07', title: 'RENEWABLE ENERGY', description: 'Specialized cabling for solar farms and wind energy installations.' },
+      { cardNumber: '08', title: 'RAILWAYS', description: 'Signalling, traction and power cables for rail networks.' },
+    ]
+  };
+
+  const industriesData = {
+    eyebrow: industriesSanityData?.eyebrow || industriesDefaultData.eyebrow,
+    heading: industriesSanityData?.heading || industriesDefaultData.heading,
+    highlightedWord: industriesSanityData?.highlightedWord || industriesDefaultData.highlightedWord,
+    description: industriesSanityData?.description || industriesDefaultData.description,
+    industries: industriesSanityData?.industries || industriesDefaultData.industries,
+  };
+
   return (
     <main className="min-h-screen bg-white relative">
       <Navbar />
@@ -100,6 +130,13 @@ export default function Page() {
           "https://res.cloudinary.com/dmnew7sbj/image/upload/c_crop,ar_1:1/v1777891349/Gemini_Generated_Image_7qtekd7qtekd7qte_v0jkps.png",
           "https://res.cloudinary.com/dmnew7sbj/image/upload/c_crop,ar_1:1/v1777891467/Gemini_Generated_Image_xoyut6xoyut6xoyu_mqqpqf.png"
         ]}
+      />
+      <IndustriesWeCater 
+        eyebrow={industriesData.eyebrow}
+        heading={industriesData.heading}
+        highlightedWord={industriesData.highlightedWord}
+        description={industriesData.description}
+        industries={industriesData.industries}
       />
     </main>
   );
