@@ -5,6 +5,7 @@ import HouseWiringSection from './Components/HouseWiringSection';
 import IndustrialWiringSection from './Components/IndustrialWiringSection';
 import NextGenSection from './Components/NextGenSection';
 import IndustriesWeCater from './Components/industrieswecater';
+import JourneySection from './Components/JourneySection';
 import { getActiveIndustriesSection } from '@/sanity/lib/api/landingPage/industries';
 
 export default async function Page() {
@@ -137,6 +138,14 @@ export default async function Page() {
         highlightedWord={industriesData.highlightedWord}
         description={industriesData.description}
         industries={industriesData.industries}
+      />
+      <JourneySection 
+        stats={[
+          { number: 22, label: 'YEARS ACTIVE', suffix: '+' },
+          { number: 50, label: 'PROJECTS DONE', suffix: 'K+' },
+          { number: 18, label: 'STATES SERVED', suffix: '+' },
+          { number: 100, label: 'PRODUCT VARIANTS', suffix: '+' },
+        ]}
       />
     </main>
   );
