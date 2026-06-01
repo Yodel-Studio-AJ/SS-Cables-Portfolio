@@ -46,7 +46,7 @@ export default function Navbar() {
         
         {/* Mobile Menu Toggle */}
         <button
-          className="lg:hidden text-white z-50 p-2"
+          className="lg:hidden text-white z-50 p-2 ml-auto mr-2 -mt-2"
           onClick={() => setIsOpen(!isOpen)}
           aria-label={isOpen ? "Close menu" : "Open menu"}
           aria-expanded={isOpen}

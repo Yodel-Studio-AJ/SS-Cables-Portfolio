@@ -5,40 +5,17 @@ import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 
-type Logo = {
+export type TrustedLogo = {
   url: string;
   alt: string;
   size: 'lg' | 'sm';
 };
 
-// Add more logos here
-const logos: Logo[] = [
-  {
-    url: 'https://res.cloudinary.com/dmnew7sbj/image/upload/v1777723738/south-bihar-power-distribution-co-ltd-aurangabad-bihar-electricity-suppliers-hj3ncnnaoa-250_1_tuivwz.png',
-    alt: 'South Bihar Power Distribution Co Ltd',
-    size: 'lg',
-  },
-  {
-    url: 'https://res.cloudinary.com/dmnew7sbj/image/upload/v1777723742/unnamed_1_iqurcx.png',
-    alt: 'Bihar Electricity Board',
-    size: 'lg',
-  },
-  {
-    url: 'https://res.cloudinary.com/dmnew7sbj/image/upload/v1777723746/1a0cec36ab54ad063a8a10f022348793_1_a2rlcf.png',
-    alt: 'NEEPCO',
-    size: 'sm',
-  },
-  {
-    url: 'https://res.cloudinary.com/dmnew7sbj/image/upload/v1777723750/apepdcl-mandapeta-east-godavari-wddeeplvmc_1_hrjonz.png',
-    alt: 'APEPDCL',
-    size: 'sm',
-  },
-  {
-    url: 'https://res.cloudinary.com/dmnew7sbj/image/upload/v1777723756/Indian_Railways.svg_2_mnyb6q.png',
-    alt: 'Indian Railways',
-    size: 'sm',
-  },
-];
+interface TrustedSectionProps {
+  title: string;
+  description: string;
+  logos: TrustedLogo[];
+}
 
 const sizeClass = {
   lg: 'h-[100px] sm:h-[120px] md:h-[135px] lg:h-[145px]',
@@ -70,7 +47,7 @@ const logoItem: Variants = {
   },
 };
 
-export default function TrustedSection() {
+export default function TrustedSection({ title, description, logos }: TrustedSectionProps) {
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
 
@@ -88,18 +65,16 @@ export default function TrustedSection() {
           animate={inView ? 'visible' : 'hidden'}
           className="text-[40px] md:text-[50px] lg:text-[60px] font-light leading-[1.2] tracking-[-1px] lg:tracking-[-2px] text-[#3B3B3B] text-center mb-4 lg:mb-6"
         >
-          Tested. Deployed. Trusted.
+          {title}
         </motion.h2>
 
         <motion.p
           variants={fadeUp}
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
-          className="text-[18px] md:text-[20px] lg:text-[25px] font-light leading-[1.4] lg:leading-[1.5] text-[#3B3B3B] text-center max-w-[1000px] mx-auto mb-12 lg:mb-16"
+          className="text-[18px] md:text-[20px] lg:text-[25px] font-light leading-[1.4] lg:leading-[1.5] text-[#3B3B3B] text-center max-w-[1000px] mx-auto mb-12 lg:mb-16 whitespace-pre-line"
         >
-          SS Cable combines advanced engineering with proven field performance,
-          <br className="hidden md:block" />
-          delivering measurable results for utilities modernizing their transmission infrastructure.
+          {description}
         </motion.p>
 
         <motion.div
@@ -108,9 +83,9 @@ export default function TrustedSection() {
           animate={inView ? 'visible' : 'hidden'}
           className="w-full flex flex-wrap justify-center items-center gap-8 md:gap-12 lg:gap-16"
         >
-          {logos.map((logo) => (
+          {logos.map((logo, index) => (
             <motion.div
-              key={logo.url}
+              key={`${logo.url}-${index}`}
               variants={logoItem}
               className={`relative w-auto flex items-center justify-center ${sizeClass[logo.size]}`}
             >

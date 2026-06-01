@@ -4,14 +4,17 @@ import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 
-type StyledSlide = {
+// ─── Types ────────────────────────────────────────────────────────────────────
+// These are exported so a Sanity data-fetcher can import and use them directly.
+
+export type StyledSlide = {
   id: number;
   image: string;
   bgZoom?: boolean;
   heading: 'styled';
 };
 
-type GenericSlide = {
+export type GenericSlide = {
   id: number;
   image: string;
   bgZoom?: boolean;
@@ -20,67 +23,34 @@ type GenericSlide = {
   line2: string;
 };
 
-type Slide = StyledSlide | GenericSlide;
+export type HeroSlide = StyledSlide | GenericSlide;
 
-const CONFIG = {
-  interval: 6_000,
-  imageDuration: 1.2,
-  imageExitDuration: 0.8,
-  textDuration: 0.7,
-  textExitDuration: 0.4,
-  textDelay: 0.3,
-  bgZoomSize: 'cover',
-  bgZoomPosition: 'center',
-} as const;
+export interface HeroProps {
+  slides: HeroSlide[];
+  /** Auto-advance interval in ms. Defaults to 6000. */
+  interval?: number;
+}
 
-// Edit slides here
-const SLIDES: Slide[] = [
-  {
-    id: 0,
-    image:
-      'https://res.cloudinary.com/dmnew7sbj/image/upload/v1777671641/q042V-1_1.jpg_1_bjadc6.jpg',
-    heading: 'styled',
-  },
-  {
-    id: 1,
-    image:
-      'https://res.cloudinary.com/dmnew7sbj/image/upload/v1777747506/Gemini_Generated_Image_a4hx2ma4hx2ma4hx_ewyqti.png',
-    bgZoom: true,
-    heading: 'generic',
-    line1: 'Powering Connections.',
-    line2: 'Delivering Trust',
-  },
-  {
-    id: 2,
-    image:
-      'https://res.cloudinary.com/dmnew7sbj/image/upload/v1777747658/Gemini_Generated_Image_rukbp2rukbp2rukb_v71gil.png',
-    bgZoom: true,
-    heading: 'generic',
-    line1: 'Advanced Wiring',
-    line2: 'for Modern Needs.',
-  },
-  {
-    id: 3,
-    image:
-      'https://res.cloudinary.com/dmnew7sbj/image/upload/v1777747702/Gemini_Generated_Image_62mn6162mn6162mn_sl54ux.png',
-    bgZoom: true,
-    heading: 'generic',
-    line1: 'Safe Connections',
-    line2: 'for Every Home.',
-  },
-];
+// ─── Animation config ─────────────────────────────────────────────────────────
+
+const IMAGE_DURATION = 1.2;
+const IMAGE_EXIT_DURATION = 0.8;
+const TEXT_DURATION = 0.7;
+const TEXT_EXIT_DURATION = 0.4;
+const TEXT_DELAY = 0.3;
+const DEFAULT_INTERVAL = 6_000;
 
 const imageVariants: Variants = {
   enter: { opacity: 0, scale: 1.05 },
   center: {
     opacity: 1,
     scale: 1,
-    transition: { duration: CONFIG.imageDuration, ease: 'easeOut' },
+    transition: { duration: IMAGE_DURATION, ease: 'easeOut' },
   },
   exit: {
     opacity: 0,
     scale: 1,
-    transition: { duration: CONFIG.imageExitDuration, ease: 'easeIn' },
+    transition: { duration: IMAGE_EXIT_DURATION, ease: 'easeIn' },
   },
 };
 
@@ -90,19 +60,21 @@ const textVariants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: CONFIG.textDuration,
+      duration: TEXT_DURATION,
       ease: 'easeOut',
-      delay: CONFIG.textDelay,
+      delay: TEXT_DELAY,
     },
   },
   exit: {
     opacity: 0,
     y: -16,
-    transition: { duration: CONFIG.textExitDuration, ease: 'easeIn' },
+    transition: { duration: TEXT_EXIT_DURATION, ease: 'easeIn' },
   },
 };
 
-function SlideHeading({ slide }: { slide: Slide }) {
+// ─── Sub-components ───────────────────────────────────────────────────────────
+
+function SlideHeading({ slide }: { slide: HeroSlide }) {
   if (slide.heading === 'styled') {
     return (
       <h1 id="hero-heading" className="text-white tracking-[-0.05em]">
@@ -164,31 +136,35 @@ function SlideIndicators({
   );
 }
 
-export default function Hero() {
+// ─── Main component ───────────────────────────────────────────────────────────
+
+export default function Hero({ slides, interval = DEFAULT_INTERVAL }: HeroProps) {
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
+    if (slides.length <= 1) return;
     const id = setInterval(
-      () => setCurrent((prev) => (prev + 1) % SLIDES.length),
-      CONFIG.interval,
+      () => setCurrent((prev) => (prev + 1) % slides.length),
+      interval,
     );
     return () => clearInterval(id);
-  }, []);
+  }, [slides.length, interval]);
 
-  const slide = SLIDES[current];
+  const slide = slides[current];
 
   return (
     <section
       aria-labelledby="hero-heading"
       className="w-full bg-white min-h-screen flex flex-col pt-3 pb-4 md:pt-4 md:pb-4 lg:pt-6 lg:pb-4"
     >
-      <div className="max-w-7xl mx-auto px-4 w-full flex-1 flex flex-col">
+      <div className="w-full px-4 md:px-6 lg:px-5 flex-1 flex flex-col">
         <div className="relative w-full flex-1 flex items-end pb-12 sm:pb-16 md:pb-24 rounded-[1.5rem] md:rounded-[2rem] overflow-hidden shadow-lg">
 
+          {/* Background image with crossfade */}
           <AnimatePresence mode="sync">
             <motion.div
               key={slide.id}
-              variants={imageVariants}
+              variants={imageVariants}  
               initial="enter"
               animate="center"
               exit="exit"
@@ -196,14 +172,16 @@ export default function Hero() {
               className="absolute inset-0 bg-no-repeat"
               style={{
                 backgroundImage: `url('${slide.image}')`,
-                backgroundSize: slide.bgZoom ? CONFIG.bgZoomSize : 'cover',
-                backgroundPosition: slide.bgZoom ? CONFIG.bgZoomPosition : 'bottom',
+                backgroundSize: 'cover',
+                backgroundPosition: slide.bgZoom ? 'center' : 'bottom',
               }}
             />
           </AnimatePresence>
 
+          {/* Overlay */}
           <div className="absolute inset-0 bg-black/40" aria-hidden="true" />
 
+          {/* Slide text */}
           <div className="relative z-10 w-full px-4 sm:px-8 lg:px-12">
             <AnimatePresence mode="wait">
               <motion.div
@@ -219,7 +197,7 @@ export default function Hero() {
           </div>
 
           <SlideIndicators
-            total={SLIDES.length}
+            total={slides.length}
             current={current}
             onSelect={setCurrent}
           />
