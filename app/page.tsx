@@ -9,7 +9,7 @@ import JourneySection from './Components/JourneySection';
 import { getActiveIndustriesSection } from '@/sanity/lib/api/landingPage/industries';
 
 export default async function Page() {
-  const industriesSanityData = await getActiveIndustriesSection();
+  const industriesSanityData = await getActiveIndustriesSection().catch(() => null);
 
   // --- Industries We Cater Data ---
   const industriesDefaultData = {
