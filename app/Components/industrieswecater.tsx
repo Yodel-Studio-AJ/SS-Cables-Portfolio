@@ -47,19 +47,19 @@ const itemVariants: Variants = {
 /**
  * Renders the heading with a highlighted word and an animated accent line.
  */
-const SectionHeader = ({ 
-  eyebrow, 
-  heading, 
-  highlightedWord, 
-  description 
+const SectionHeader = ({
+  eyebrow,
+  heading,
+  highlightedWord,
+  description
 }: Omit<IndustriesWeCaterProps, 'industries'>) => {
-  
+
   const renderHeading = () => {
     if (!heading) return null;
     if (!highlightedWord) return heading;
-    
+
     const parts = heading.split(new RegExp(`(${highlightedWord})`, 'gi'));
-    return parts.map((part, index) => 
+    return parts.map((part, index) =>
       part.toLowerCase() === highlightedWord.toLowerCase() ? (
         <span key={index} className="text-[#14B927]">{part}</span>
       ) : part
@@ -79,7 +79,7 @@ const SectionHeader = ({
           {eyebrow}
         </motion.p>
       )}
-      
+
       {heading && (
         <div className="mb-2 lg:mb-3 w-fit">
           <motion.h2
@@ -100,7 +100,7 @@ const SectionHeader = ({
           />
         </div>
       )}
-      
+
       {description && (
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -159,7 +159,7 @@ export default function IndustriesWeCater({
       <div className="w-full px-4 md:px-6 lg:px-5 flex-1 flex flex-col">
         <div className="relative w-full flex-1 bg-slate-100 rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-8 lg:p-10 shadow-sm border border-slate-200/50 flex flex-col justify-center">
           <div className="max-w-7xl mx-auto w-full">
-            <SectionHeader 
+            <SectionHeader
               eyebrow={eyebrow}
               heading={heading}
               highlightedWord={highlightedWord}

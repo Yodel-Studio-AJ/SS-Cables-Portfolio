@@ -139,14 +139,7 @@ export default async function Page() {
         description={industriesData.description}
         industries={industriesData.industries}
       />
-      <JourneySection 
-        stats={[
-          { number: 22, label: 'YEARS ACTIVE', suffix: '+' },
-          { number: 50, label: 'PROJECTS DONE', suffix: 'K+' },
-          { number: 18, label: 'STATES SERVED', suffix: '+' },
-          { number: 100, label: 'PRODUCT VARIANTS', suffix: '+' },
-        ]}
-      />
+      <JourneySection />
     </main>
   );
 }
