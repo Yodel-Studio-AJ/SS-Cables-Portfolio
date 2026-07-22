@@ -6,6 +6,7 @@ import IndustrialWiringSection from './Components/IndustrialWiringSection';
 import NextGenSection from './Components/NextGenSection';
 import IndustriesWeCater from './Components/industrieswecater';
 import JourneySection from './Components/JourneySection';
+import RightConnection from './Components/RightConnection';
 import { getActiveIndustriesSection } from '@/sanity/lib/api/landingPage/industries';
 
 export default async function Page() {
@@ -35,6 +36,73 @@ export default async function Page() {
     highlightedWord: industriesSanityData?.highlightedWord || industriesDefaultData.highlightedWord,
     description: industriesSanityData?.description || industriesDefaultData.description,
     industries: industriesSanityData?.industries || industriesDefaultData.industries,
+  };
+
+  // --- Right Connection (Contact Section) Data ---
+  const rightConnectionData = {
+    contactHeading: "Let's find the\nright connection.",
+    contactDescription: "Tell us what you need. Our team will help you choose the right wire or cable for your project.",
+    videoSrc: 'https://res.cloudinary.com/dmnew7sbj/video/upload/v1784698436/Cable_nkoulb.mp4',
+    enquiryCards: [
+      {
+        src: 'https://res.cloudinary.com/dmnew7sbj/image/upload/v1784655338/Sales_Enquiry_t8i1xe.svg',
+        alt: 'Sales enquiries icon badge',
+        title: 'Sales enquiries',
+        description: 'pre-sale, project, and quotation support',
+      },
+      {
+        src: 'https://res.cloudinary.com/dmnew7sbj/image/upload/v1784655390/settings-svgrepo-com_vnmutp.svg',
+        alt: 'Technical support configuration settings icon',
+        title: 'Technical support',
+        description: 'help selecting a cable configuration',
+        iconClass: 'animate-spin-slow',
+      },
+      {
+        src: 'https://res.cloudinary.com/dmnew7sbj/image/upload/v1784655456/handshake-svgrepo-com_qxvgbj.svg',
+        alt: 'Dealer partnerships handshake icon',
+        title: 'Dealer partnerships',
+        description: 'become or connect with an SS Cable dealer',
+      },
+    ],
+    formHeading: 'Tell us about your requirement.',
+    formReasons: ['Product enquiry', 'Project requirement', 'Dealership'],
+    subFeatures: [
+      {
+        src: 'https://res.cloudinary.com/dmnew7sbj/image/upload/v1784655512/book-open-svgrepo-com_d0pmwx.svg',
+        alt: 'Product guidance open book icon',
+        title: 'Product guidance',
+        description: 'Get help deciding the right wire or cable.',
+      },
+      {
+        src: 'https://res.cloudinary.com/dmnew7sbj/image/upload/v1784655571/engineer-worker-svgrepo-com_qkymgw.svg',
+        alt: 'Project enquiries engineer helmet icon',
+        title: 'Project enquiries',
+        description: "Share your requirement. We'll guide you to the right one.",
+      },
+      {
+        src: 'https://res.cloudinary.com/dmnew7sbj/image/upload/v1784655665/people-svgrepo-com_nri6ts.svg',
+        alt: 'Dealer support community group icon',
+        title: 'Dealer support',
+        description: 'Partner with us. Grow with confidence.',
+      },
+    ],
+    visitHeading: 'Visit or write to us.',
+    locationCards: [
+      {
+        src: 'https://res.cloudinary.com/dmnew7sbj/image/upload/v1784655696/office-building-svgrepo-com_ovfzue.svg',
+        alt: 'Registered office building icon badge',
+        title: 'Registered office',
+        address: 'Add your verified address here',
+      },
+      {
+        src: 'https://res.cloudinary.com/dmnew7sbj/image/upload/v1784655744/manufacture-svgrepo-com_t3kise.svg',
+        alt: 'Manufacturing facility factory icon badge',
+        title: 'Manufacturing facility',
+        address: 'Add your verified address here',
+      },
+    ],
+    directionsHref: '#directions',
+    footerTagline: 'Every strong connection \nstarts with a conversation.',
   };
 
   return (
@@ -140,6 +208,19 @@ export default async function Page() {
         industries={industriesData.industries}
       />
       <JourneySection />
+      <RightConnection
+        contactHeading={rightConnectionData.contactHeading}
+        contactDescription={rightConnectionData.contactDescription}
+        videoSrc={rightConnectionData.videoSrc}
+        enquiryCards={rightConnectionData.enquiryCards}
+        formHeading={rightConnectionData.formHeading}
+        formReasons={rightConnectionData.formReasons}
+        subFeatures={rightConnectionData.subFeatures as [any, any, any]}
+        visitHeading={rightConnectionData.visitHeading}
+        locationCards={rightConnectionData.locationCards}
+        directionsHref={rightConnectionData.directionsHref}
+        footerTagline={rightConnectionData.footerTagline}
+      />
     </main>
   );
 }

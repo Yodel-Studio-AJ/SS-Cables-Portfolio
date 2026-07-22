@@ -19,6 +19,7 @@ export interface Milestone {
   year: number;
   title: string;
   description: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   image: StaticImageData | any;
   position: 'top' | 'bottom';
   order: number;
