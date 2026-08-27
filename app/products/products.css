@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&display=swap');
+
+#stitch-product-page {
+  --color-surface: #f7f9fb;
+  --color-surface-dim: #d8dadc;
+  --color-surface-bright: #f7f9fb;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f2f4f6;
+  --color-surface-container: #eceef0;
+  --color-surface-container-high: #e6e8ea;
+  --color-surface-container-highest: #e0e3e5;
+  --color-on-surface: #191c1e;
+  --color-on-surface-variant: #45464d;
+  --color-inverse-surface: #2d3133;
+  --color-inverse-on-surface: #eff1f3;
+  --color-outline: #76777d;
+  --color-outline-variant: #c6c6cd;
+  --color-surface-tint: #565e74;
+  --color-primary: #000000;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #131b2e;
+  --color-on-primary-container: #7c839b;
+  --color-inverse-primary: #bec6e0;
+  --color-secondary: #904d00;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #fe932c;
+  --color-on-secondary-container: #663500;
+  --color-tertiary: #000000;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #0d1c2e;
+  --color-on-tertiary-container: #77859a;
+  
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: #f7f9fb;
+  color: #191c1e;
+}
+
+#stitch-product-page .font-display {
+  font-family: 'Newsreader', Georgia, serif;
+}
