@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const NAV_LINKS = [
-  { label: "Product Catalog", href: "#" },
+  { label: "Products", href: "/products" },
   { label: "About", href: "#" },
   { label: "Resources", href: "#" },
   { label: "Company", href: "#" },
@@ -36,13 +37,28 @@ const SamarIcon = ({ className }: { className?: string }) => (
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
-    <header className="absolute top-[36px] left-0 right-0 z-50">
+    <header className="absolute top-[16px] md:top-[36px] left-0 right-0 z-50">
       <nav 
         className="max-w-7xl mx-auto px-4 flex items-center justify-between lg:justify-end gap-16 lg:pr-[39.5px] relative"
         aria-label="Main navigation"
       >
+        {pathname === '/products' && (
+          <div className="flex-1 hidden lg:block">
+            <Link href="/" className="text-white font-bold text-xl tracking-tight hover:text-white transition-colors">
+              S.S.Cables
+            </Link>
+          </div>
+        )}
+        {pathname === '/products' && (
+          <div className="flex-1 lg:hidden">
+            <Link href="/" className="text-white font-bold text-xl tracking-tight hover:text-white transition-colors">
+              S.S.Cables
+            </Link>
+          </div>
+        )}
         
         {/* Mobile Menu Toggle */}
         <button
@@ -71,7 +87,10 @@ export default function Navbar() {
         <ul className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-8 text-[14px] leading-normal font-bold text-white/90">
           {NAV_LINKS.map((link) => (
             <li key={link.label}>
-              <Link href={link.href} className="hover:text-white transition-colors">
+              <Link 
+                href={link.href} 
+                className={`transition-colors ${pathname === '/products' ? 'hover:text-[#fe932c]' : 'hover:text-white'}`}
+              >
                 {link.label}
               </Link>
             </li>
@@ -109,7 +128,11 @@ export default function Navbar() {
           <ul className="flex flex-col items-center gap-6 text-[16px] leading-normal font-bold text-white">
             {NAV_LINKS.map((link) => (
               <li key={link.label}>
-                <Link href={link.href} onClick={() => setIsOpen(false)}>
+                <Link 
+                  href={link.href} 
+                  onClick={() => setIsOpen(false)}
+                  className={`transition-colors ${pathname === '/products' ? 'hover:text-[#fe932c]' : ''}`}
+                >
                   {link.label}
                 </Link>
               </li>
@@ -138,9 +161,11 @@ export default function Navbar() {
       </nav>
 
       {/* Decorative Line Under Nav */}
-      <div className="hidden lg:block max-w-full mx-auto px-8 mt-6" aria-hidden="true">
-        <div className="w-full h-px bg-white/20"></div>
-      </div>
+      {pathname !== '/products' && (
+        <div className="hidden lg:block max-w-full mx-auto px-8 mt-6" aria-hidden="true">
+          <div className="w-full h-px bg-white/20"></div>
+        </div>
+      )}
     </header>
   );
 }
